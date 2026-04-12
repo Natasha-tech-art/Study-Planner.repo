@@ -1,33 +1,48 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Tasks from './pages/Tasks';
-// Import other pages...
+
+const Dashboard = () => (
+  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-white shadow-2xl">
+    <h2 className="text-3xl font-bold mb-4">Study Dashboard</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="p-4 bg-white/5 rounded-xl border border-white/10">
+        <p className="text-sm text-white/60 uppercase">Current Streak</p>
+        <p className="text-2xl font-bold text-orange-400">12 Days 🔥</p>
+      </div>
+      <div className="p-4 bg-white/5 rounded-xl border border-white/10">
+        <p className="text-sm text-white/60 uppercase">Completion</p>
+        <p className="text-2xl font-bold text-green-400">85%</p>
+      </div>
+    </div>
+  </div>
+);
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2564')] bg-cover bg-fixed font-sans">
-        {/* Navigation Bar */}
-        <nav className="fixed top-0 w-full z-50 px-6 py-4">
-          <div className="max-w-7xl mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-3 flex justify-between items-center">
-            <h1 className="text-white font-bold text-xl tracking-tight">StudyScanner</h1>
-            <div className="space-x-6 text-white/80 text-sm font-medium">
-              <Link to="/" className="hover:text-white transition">Dashboard</Link>
-              <Link to="/tasks" className="hover:text-white transition">Tasks</Link>
-              <Link to="/subjects" className="hover:text-white transition">Subjects</Link>
+      {/* Background Container - Make sure this URL works! */}
+      <div className="min-h-screen bg-fixed bg-cover bg-center" 
+           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564')` }}>
+        
+        <div className="min-h-screen bg-black/30 backdrop-blur-sm p-4 md:p-10">
+          
+          {/* Glass Navbar */}
+          <nav className="max-w-5xl mx-auto mb-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl px-8 py-4 flex justify-between items-center shadow-2xl">
+            <h1 className="text-white font-black text-2xl">STUDY<span className="text-blue-400">SCANNER</span></h1>
+            <div className="flex gap-8 text-white/90 font-medium">
+              <Link to="/" className="hover:text-blue-300 transition">Dashboard</Link>
+              <Link to="/tasks" className="hover:text-blue-300 transition">Tasks</Link>
             </div>
-          </div>
-        </nav>
+          </nav>
 
-        {/* Page Content */}
-        <main className="pt-28 pb-10 px-6 max-w-7xl mx-auto">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/tasks" element={<Tasks />} />
-            {/* Add other routes here */}
-          </Routes>
-        </main>
+          <main className="max-w-5xl mx-auto">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/tasks" element={<div className="text-white">Tasks logic goes here...</div>} />
+            </Routes>
+          </main>
+
+        </div>
       </div>
     </Router>
   );
