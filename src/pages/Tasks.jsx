@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const Tasks = () => {
+    const [allSubjects, setAllSubjects] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [taskInput, setTaskInput] = useState({ title: '', desc: '', deadline: '', subject: 'General' });
 
   useEffect(() => {
+    const savedSubjects = JSON.parse(localStorage.getItem('study-subjects')) || ['General', 'Math', 'Science'];
+    setAllSubjects(savedSubjects);
     const saved = JSON.parse(localStorage.getItem('study-tasks')) || [];
     setTasks(saved);
   }, []);
@@ -43,17 +46,19 @@ const Tasks = () => {
           value={taskInput.deadline} onChange={(e) => setTaskInput({...taskInput, deadline: e.target.value})}
         />
         <select 
-          className="bg-white/5 border border-white/10 rounded-xl p-3 text-white outline-none"
-          value={taskInput.subject} onChange={(e) => setTaskInput({...taskInput, subject: e.target.value})}
-        >
-          <option className="bg-slate-800">General</option>
-          <option className="bg-slate-800">Math</option>
-          <option className="bg-slate-800">Science</option>
-        </select>
+  className="bg-white/5 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-400"
+  value={taskInput.subject} 
+  onChange={(e) => setTaskInput({...taskInput, subject: e.target.value})}
+>
+  {allSubjects.map((sub) => (
+    <option key={sub} value={sub} className="bg-slate-800">
+      {sub}
+    </option>
+  ))}
+</select>
         <button type="submit" className="bg-blue-500/80 hover:bg-blue-400 text-white font-bold rounded-xl p-3 transition-all">Add Task +</button>
       </form>
 
-      {/* Task List Rendering */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {tasks.map(task => (
           <div key={task.id} className={`p-6 rounded-2xl border backdrop-blur-lg shadow-xl transition-all hover:scale-[1.02] ${getPriority(task.deadline)}`}>

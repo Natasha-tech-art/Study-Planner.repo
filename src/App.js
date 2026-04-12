@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Tasks from './pages/Tasks';
+import Subjects from './pages/Subjects';
 
 
 const Dashboard = () => (
@@ -9,7 +10,7 @@ const Dashboard = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="p-4 bg-white/5 rounded-xl border border-white/10">
         <p className="text-sm text-white/60 uppercase">Current Streak</p>
-        <p className="text-2xl font-bold text-orange-400">12 Days 🔥</p>
+        <p className="text-2xl font-bold text-orange-400"> 🔥</p>
       </div>
       <div className="p-4 bg-white/5 rounded-xl border border-white/10">
         <p className="text-sm text-white/60 uppercase">Completion</p>
@@ -28,21 +29,20 @@ function App() {
         
         <div className="min-h-screen bg-black/30 backdrop-blur-sm p-4 md:p-10">
           
-          {/* Glass Navbar */}
-          <nav className="max-w-5xl mx-auto mb-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl px-8 py-4 flex justify-between items-center shadow-2xl">
-            <h1 className="text-white font-black text-2xl">STUDY<span className="text-blue-400">SCANNER</span></h1>
-            <div className="flex gap-8 text-white/90 font-medium">
-              <Link to="/" className="hover:text-blue-300 transition">Dashboard</Link>
-              <Link to="/tasks" className="hover:text-blue-300 transition">Tasks</Link>
-            </div>
-          </nav>
+  
+<nav className="max-w-5xl mx-auto mb-10 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl px-8 py-4 flex justify-between items-center shadow-2xl">
+  <h1 className="text-white font-black text-2xl tracking-tighter">STUDYSCANNER</h1>
+  <div className="flex gap-8 text-white/90 font-medium">
+    <Link to="/" className="hover:text-blue-300 transition">Dashboard</Link>
+    <Link to="/subjects" className="hover:text-blue-300 transition">Subjects</Link>
+    <Link to="/tasks" className="hover:text-blue-300 transition">Tasks</Link>
+  </div>
+</nav>
 
-          <main className="max-w-5xl mx-auto">
+<main className="max-w-5xl mx-auto">
   <Routes>
-    {/* This connects to the Dashboard component you created */}
     <Route path="/" element={<Dashboard />} />
-    
-    {/* CHANGE THIS LINE: Use the actual Tasks component here */}
+    <Route path="/subjects" element={<Subjects />} />
     <Route path="/tasks" element={<Tasks />} />
   </Routes>
 </main>
