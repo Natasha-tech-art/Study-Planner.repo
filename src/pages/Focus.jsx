@@ -60,7 +60,7 @@ const Focus = () => {
             onClick={toggleTimer}
             className={`px-10 py-4 rounded-2xl font-bold transition-all ${isActive ? 'bg-red-500/80 hover:bg-red-500' : 'bg-blue-500 hover:bg-blue-400'} text-white`}
           >
-            {isActive ? 'Pause' : 'Start Focus'}
+            {isActive ? 'Pause' : 'Continue'}
           </button>
           <button 
             onClick={resetTimer}
