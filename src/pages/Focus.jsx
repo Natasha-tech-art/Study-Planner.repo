@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const Focus = () => {
+  const [focusText, setFocusText] = useState("");
+  
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [tasks, setTasks] = useState([]);
-  const [selectedTask, setSelectedTask] = useState('');
 
   useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem('study-tasks')) || [];
-    setTasks(savedTasks);
-    
     let interval = null;
     if (isActive && (minutes > 0 || seconds > 0)) {
       interval = setInterval(() => {
@@ -23,52 +20,63 @@ const Focus = () => {
       }, 1000);
     } else if (minutes === 0 && seconds === 0) {
       setIsActive(false);
-      alert("Time's up! Take a break.");
+      clearInterval(interval);
+      alert("Time is up! Great focus.");
     }
     return () => clearInterval(interval);
   }, [isActive, minutes, seconds]);
 
-  const toggleTimer = () => setIsActive(!isActive);
-  const resetTimer = () => {
-    setIsActive(false);
-    setMinutes(25);
-    setSeconds(0);
-  };
-
   return (
-    <div className="animate-in zoom-in duration-500 max-w-2xl mx-auto text-center">
-      <div className="bg-white/10 backdrop-blur-2xl border border-white/20 p-12 rounded-[3rem] shadow-2xl">
-        <h2 className="text-white text-lg font-medium opacity-60 mb-2 uppercase tracking-widest">Focus Session</h2>
-        
-        <div className="text-8xl font-black text-white mb-8 tabular-nums tracking-tighter">
-          {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+    <div className="max-w-4xl mx-auto text-white mt-10">
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-12 shadow-2xl">
+        <h2 className="text-4xl font-black mb-8 text-center uppercase tracking-tighter">Focus Mode</h2>
+
+        <div className="mb-10">
+          <label className="block text-sm font-bold text-white/40 uppercase mb-3">What are you working on?</label>
+          <input 
+            type="text"
+            placeholder="e.g., Coding React Components"
+            className="w-full bg-white/5 border border-white/10 p-6 rounded-2xl text-2xl outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            value={focusText}
+            onChange={(e) => setFocusText(e.target.value)} 
+          />
+        </div>
+        <div className="flex flex-col items-center gap-6">
+          <div className="flex items-center gap-4">
+            <input 
+              type="number" 
+              value={minutes} 
+              onChange={(e) => setMinutes(Math.max(0, parseInt(e.target.value) || 0))}
+              disabled={isActive}
+              className="w-32 bg-white/5 border border-white/10 text-6xl font-black text-center p-4 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500"
+            />
+            <span className="text-6xl font-black">:</span>
+            <div className="text-6xl font-black w-32 bg-white/5 border border-white/10 p-4 rounded-2xl text-center">
+              {seconds < 10 ? `0${seconds}` : seconds}
+            </div>
+          </div>
+
+          <div className="flex gap-4 w-full max-w-sm mt-4">
+            <button 
+              onClick={() => setIsActive(!isActive)}
+              className={`flex-grow py-5 rounded-2xl font-black uppercase text-xl transition-all transform hover:scale-105 shadow-xl ${isActive ? 'bg-red-500 hover:bg-red-400' : 'bg-green-500 hover:bg-green-400'}`}
+            >
+              {isActive ? 'Stop' : 'Continue'}
+            </button>
+            <button 
+              onClick={() => { setIsActive(false); setMinutes(25); setSeconds(0); }}
+              className="px-8 bg-white/10 hover:bg-white/20 rounded-2xl font-bold transition-all"
+            >
+              Reset
+            </button>
+          </div>
         </div>
 
-        <select 
-          className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white mb-8 outline-none"
-          value={selectedTask}
-          onChange={(e) => setSelectedTask(e.target.value)}
-        >
-          <option value="" className="bg-slate-900">What are you focusing on?</option>
-          {tasks.map(t => (
-            <option key={t.id} value={t.title} className="bg-slate-900">{t.title}</option>
-          ))}
-        </select>
-
-        <div className="flex justify-center gap-4">
-          <button 
-            onClick={toggleTimer}
-            className={`px-10 py-4 rounded-2xl font-bold transition-all ${isActive ? 'bg-red-500/80 hover:bg-red-500' : 'bg-blue-500 hover:bg-blue-400'} text-white`}
-          >
-            {isActive ? 'Pause' : 'Continue'}
-          </button>
-          <button 
-            onClick={resetTimer}
-            className="px-10 py-4 rounded-2xl font-bold bg-white/10 text-white hover:bg-white/20 transition-all"
-          >
-            Reset
-          </button>
-        </div>
+        {focusText && (
+          <p className="mt-10 text-center text-white/60 italic text-xl">
+            Currently focusing on: <span className="text-blue-400 font-bold">"{focusText}"</span>
+          </p>
+        )}
       </div>
     </div>
   );
