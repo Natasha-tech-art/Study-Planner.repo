@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Tasks from './pages/Tasks';
 import Subjects from './pages/Subjects';
 import CalendarView from './pages/CalendarView';
+import Focus from './pages/Focus';
 
 
 
@@ -38,6 +39,7 @@ function App() {
     <Link to="/subjects" className="hover:text-blue-300 transition">Subjects</Link>
     <Link to="/tasks" className="hover:text-blue-300 transition">Tasks</Link>
     <Link to="/calendar" className="hover:text-blue-300 transition">Calendar</Link>
+    <Link to="/focus" className="hover:text-blue-300 transition">Focus</Link>
   </div>
 </nav>
 
@@ -47,6 +49,7 @@ function App() {
     <Route path="/subjects" element={<Subjects />} />
     <Route path="/tasks" element={<Tasks />} />
     <Route path="/calendar" element={<CalendarView />} />
+    <Route path="/focus" element={<Focus />} />
   </Routes>
 </main>
 
