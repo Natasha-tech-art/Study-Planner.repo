@@ -4,6 +4,7 @@ import Tasks from './pages/Tasks';
 import Subjects from './pages/Subjects';
 import CalendarView from './pages/CalendarView';
 import Focus from './pages/Focus';
+import Authentication from './pages/Authentication';
 
 
 
@@ -40,6 +41,7 @@ function App() {
     <Link to="/tasks" className="hover:text-blue-300 transition">Tasks</Link>
     <Link to="/calendar" className="hover:text-blue-300 transition">Calendar</Link>
     <Link to="/focus" className="hover:text-blue-300 transition">Focus</Link>
+    <Link to="/auth" className="hover:text-blue-300 transition">Authentication</Link>
   </div>
 </nav>
 
@@ -50,6 +52,7 @@ function App() {
     <Route path="/tasks" element={<Tasks />} />
     <Route path="/calendar" element={<CalendarView />} />
     <Route path="/focus" element={<Focus />} />
+    <Route path="/auth" element={<Authentication />} />
   </Routes>
 </main>
 
