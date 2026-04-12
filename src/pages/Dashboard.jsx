@@ -41,7 +41,7 @@ const Dashboard = () => {
     } else if (percentage < 100) {
       setReminder(`Push through! ${savedTasks.length - completedCount} tasks left.`);
     } else {
-      setReminder("All caught up! You're a productivity master. 🎉");
+      setReminder("All caught up! You're a productivity master.");
     }
     
     setStreak(savedTasks.length > 0 ? 5 : 0);

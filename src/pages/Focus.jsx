@@ -61,7 +61,7 @@ const Focus = () => {
               onClick={() => setIsActive(!isActive)}
               className={`flex-grow py-5 rounded-2xl font-black uppercase text-xl transition-all transform hover:scale-105 shadow-xl ${isActive ? 'bg-red-500 hover:bg-red-400' : 'bg-green-500 hover:bg-green-400'}`}
             >
-              {isActive ? 'Stop' : 'Continue'}
+              {isActive ? 'Stop' : 'Start'}
             </button>
             <button 
               onClick={() => { setIsActive(false); setMinutes(25); setSeconds(0); }}

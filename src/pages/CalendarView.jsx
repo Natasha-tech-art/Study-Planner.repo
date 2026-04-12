@@ -26,7 +26,6 @@ const CalendarView = () => {
         <h2 className="text-3xl font-bold text-white mb-6">Study Schedule</h2>
         
         <div className="flex flex-col md:flex-row gap-8">
-          {/* The Calendar Widget */}
           <div className="glass-calendar p-4 rounded-2xl bg-white/5 border border-white/10">
             <Calendar 
               onChange={setDate} 

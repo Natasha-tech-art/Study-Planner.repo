@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const Tasks = () => {
-  // 1. STATE SETUP
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('study-tasks');
     return saved ? JSON.parse(saved) : [];
@@ -13,7 +12,6 @@ const Tasks = () => {
     deadline: ''
   });
 
-  // 2. ADD TASK (With Subject Support)
   const addTask = (e) => {
     e.preventDefault();
     if (!taskInput.title.trim()) return;

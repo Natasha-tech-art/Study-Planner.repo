@@ -23,7 +23,6 @@ const Footer = () => (
   </footer>
 );
 
-// 2. DASHBOARD COMPONENT
 const Dashboard = () => {
   const [stats, setStats] = useState({ total: 0, completed: 0, percent: 0 });
   const [reminder, setReminder] = useState("Welcome back!");
@@ -42,17 +41,17 @@ const Dashboard = () => {
     } else if (pct < 100) {
       setReminder(`Keep going! ${saved.length - done} tasks left today.`);
     } else {
-      setReminder("All tasks completed! You're crushing it. 🎉");
+      setReminder("All tasks completed! You're crushing it.");
     }
   };
 
   useEffect(() => {
     loadData();
     window.addEventListener('focus', loadData);
-    window.addEventListener('storage', loadData);
+    window.addEventListener('localstorage', loadData);
     return () => {
       window.removeEventListener('focus', loadData);
-      window.removeEventListener('storage', loadData);
+      window.removeEventListener('localstorage', loadData);
     };
   }, []);
 
