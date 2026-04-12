@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Tasks from './pages/Tasks';
 import Subjects from './pages/Subjects';
+import CalendarView from './pages/CalendarView';
+
 
 
 const Dashboard = () => (
@@ -23,7 +25,6 @@ const Dashboard = () => (
 function App() {
   return (
     <Router>
-      {/* Background Container - Make sure this URL works! */}
       <div className="min-h-screen bg-fixed bg-cover bg-center" 
            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564')` }}>
         
@@ -36,6 +37,7 @@ function App() {
     <Link to="/" className="hover:text-blue-300 transition">Dashboard</Link>
     <Link to="/subjects" className="hover:text-blue-300 transition">Subjects</Link>
     <Link to="/tasks" className="hover:text-blue-300 transition">Tasks</Link>
+    <Link to="/calendar" className="hover:text-blue-300 transition">Calendar</Link>
   </div>
 </nav>
 
@@ -44,6 +46,7 @@ function App() {
     <Route path="/" element={<Dashboard />} />
     <Route path="/subjects" element={<Subjects />} />
     <Route path="/tasks" element={<Tasks />} />
+    <Route path="/calendar" element={<CalendarView />} />
   </Routes>
 </main>
 
