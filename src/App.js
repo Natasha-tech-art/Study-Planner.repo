@@ -5,6 +5,7 @@ import Subjects from './pages/Subjects';
 import CalendarView from './pages/CalendarView';
 import Focus from './pages/Focus';
 import Authentication from './pages/Authentication';
+import Authentication from './pages/Authentication';
 
 
 
@@ -53,6 +54,13 @@ function App() {
     <Route path="/calendar" element={<CalendarView />} />
     <Route path="/focus" element={<Focus />} />
     <Route path="/auth" element={<Authentication />} />
+    <Route path="/" element={<Dashboard />} />
+    <Route path="/login" element={<Authentication isSignUpInitial={false} />}  />
+    <Route path="/signup" element={<Authentication isSignUpInitial={true} />}  />
+    <Route path="/subjects" element={<Subjects />} />
+    <Route path="/tasks" element={<Tasks />} />
+    <Route path="/calendar" element={<CalendarView />} />
+    <Route path="/focus" element={<Focus />} />
   </Routes>
 </main>
 
