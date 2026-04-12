@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Tasks from './pages/Tasks';
+
 
 const Dashboard = () => (
   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-white shadow-2xl">
@@ -36,11 +38,14 @@ function App() {
           </nav>
 
           <main className="max-w-5xl mx-auto">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/tasks" element={<div className="text-white">Tasks logic goes here...</div>} />
-            </Routes>
-          </main>
+  <Routes>
+    {/* This connects to the Dashboard component you created */}
+    <Route path="/" element={<Dashboard />} />
+    
+    {/* CHANGE THIS LINE: Use the actual Tasks component here */}
+    <Route path="/tasks" element={<Tasks />} />
+  </Routes>
+</main>
 
         </div>
       </div>
