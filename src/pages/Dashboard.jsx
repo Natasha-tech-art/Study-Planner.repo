@@ -50,6 +50,12 @@ const todaysTasks = savedTasks.filter(t => t.deadline === today);
 const allDoneToday = todaysTasks.length > 0 && todaysTasks.every(t => t.completed);
 
 setStreak(allDoneToday ? 1 : 0);
+const today = new Date().toISOString().split('T')[0];
+
+const todaysTasks = savedTasks.filter(t => t.deadline === today);
+const allDoneToday = todaysTasks.length > 0 && todaysTasks.every(t => t.completed);
+
+setStreak(allDoneToday ? 1 : 0);
 
   React.useEffect(() => {
     loadData(); 
