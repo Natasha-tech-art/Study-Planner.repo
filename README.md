@@ -29,11 +29,11 @@ They include:
 
 # INSTALLATION & SET UP
 1. Clone the repository
-(https://github.com/Natasha-tech-art/Study-Planner.repo.git)
+https://github.com/Natasha-tech-art/Study-Planner.repo.git
 2. Run the application
 
 # Screenshot of one of the pages       
-![Tasks Page](image.png)
+![Tasks Page](image-1.png)
 
 ## Future Roadmap
 I would like to add the following in future:
