@@ -1,7 +1,15 @@
 # StudyScanner
 
 ## Project Description
-This is a high performance study productivity tool built for students who need more than a simple to-do tool
+This is a high performance study productivity tool built for students who need more than a simple to-do tool.
+It has 6 pages.
+They include:
+1. Dashboard Page
+2. Subjects Page
+3. Tasks Page
+4. Calendar Page
+5. Focus Page
+6. Authentication Page
 
 ## Key Features
 1. Custom Subject Management - Users are not restricted to defaults since they can create and manage their own subjects
@@ -24,4 +32,11 @@ This is a high performance study productivity tool built for students who need m
 (https://github.com/Natasha-tech-art/Study-Planner.repo.git)
 2. Run the application
 
+# Screenshot of one of the pages       
 ![Tasks Page](image.png)
+
+## Future Roadmap
+I would like to add the following in future:
+1. User Authentication
+2. Export study reports as PDF
+
