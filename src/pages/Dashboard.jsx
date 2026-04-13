@@ -6,55 +6,23 @@ const Dashboard = () => {
   const [reminder, setReminder] = React.useState("Welcome back!");
   const [streak, setStreak] = React.useState(0);
 
-  const loadData = () => {
-    const savedTasks = JSON.parse(localStorage.getItem('study-tasks')) || [];
-    const completedCount = savedTasks.filter(t => t.completed).length;
-    const percentage = savedTasks.length > 0 ? Math.round((completedCount / savedTasks.length) * 100) : 0;
+ const loadData = () => {
+  const savedTasks = JSON.parse(localStorage.getItem('study-tasks')) || [];
+  const completedCount = savedTasks.filter(t => t.completed).length;
+  
+  const today = new Date().toISOString().split('T')[0];
+  const todaysTasks = savedTasks.filter(t => t.deadline === today);
+  const doneToday = todaysTasks.filter(t => t.completed).length;
+  
+  const calculatedStreak = (todaysTasks.length > 0 && doneToday === todaysTasks.length) ? 1 : 0;
 
-    setTaskStats({
-      total: savedTasks.length,
-      completed: completedCount,
-      percent: percentage
-    });
-
-    React.useEffect(() => {
-  const loadData = () => {
-    const savedTasks = JSON.parse(localStorage.getItem('study-tasks')) || [];
-    const completedCount = savedTasks.filter(t => t.completed).length;
-    const percentage = savedTasks.length > 0 ? Math.round((completedCount / savedTasks.length) * 100) : 0;
-
-    setTaskStats({
-      total: savedTasks.length,
-      completed: completedCount,
-      percent: percentage
-    });
-    
-  };
-
-  loadData();
-  window.addEventListener('focus', loadData);
-  return () => window.removeEventListener('focus', loadData);
-}, []);
-
-    if (savedTasks.length === 0) {
-      setReminder("Your list is empty. Add tasks to start your streak!");
-    } else if (percentage < 100) {
-      setReminder(`Push through! ${savedTasks.length - completedCount} tasks left.`);
-    } else {
-      setReminder("All caught up! You're a productivity master.");
-    }
-    
-const today = new Date().toISOString().split('T')[0];
-
-const todaysTasks = savedTasks.filter(t => t.deadline === today);
-const allDoneToday = todaysTasks.length > 0 && todaysTasks.every(t => t.completed);
-
-setStreak(allDoneToday ? 1 : 0);
-const today = new Date().toISOString().split('T')[0];
-
-const todaysTasks = savedTasks.filter(t => t.deadline === today);
-const allDoneToday = todaysTasks.length > 0 && todaysTasks.every(t => t.completed);
-
+  if (savedTasks.length - completedCount > 0) {
+    setReminder(`Keep going! ${savedTasks.length - completedCount} tasks left today.`);
+  } else {
+    setReminder("All caught up! You're a productivity master.");
+  }
+  setStreak(calculatedStreak); 
+};
 setStreak(allDoneToday ? 1 : 0);
 
   React.useEffect(() => {
